@@ -778,7 +778,7 @@ spec:
         - -c
         - |
           if [[ -n $REDIS_PASSWORD_FILE ]]; then
-            password_aux=`cat ${REDIS_PASSWORD_FILE}`
+            password_aux=`cat $${REDIS_PASSWORD_FILE}`
             export REDIS_PASSWORD=$password_aux
           fi
           if [[ ! -f /opt/bitnami/redis/etc/master.conf ]];then
@@ -787,11 +787,11 @@ spec:
           if [[ ! -f /opt/bitnami/redis/etc/redis.conf ]];then
             cp /opt/bitnami/redis/mounted-etc/redis.conf /opt/bitnami/redis/etc/redis.conf
           fi
-          ARGS=("--port" "${REDIS_PORT}")
+          ARGS=("--port" "$${REDIS_PORT}")
           ARGS+=("--protected-mode" "no")
           ARGS+=("--include" "/opt/bitnami/redis/etc/redis.conf")
           ARGS+=("--include" "/opt/bitnami/redis/etc/master.conf")
-          /run.sh ${ARGS[@]}
+          /run.sh $${ARGS[@]}
         env:
         - name: REDIS_REPLICATION_MODE
           value: master
@@ -909,11 +909,11 @@ spec:
         - -c
         - |
           if [[ -n $REDIS_PASSWORD_FILE ]]; then
-            password_aux=`cat ${REDIS_PASSWORD_FILE}`
+            password_aux=`cat $${REDIS_PASSWORD_FILE}`
             export REDIS_PASSWORD=$password_aux
           fi
           if [[ -n $REDIS_MASTER_PASSWORD_FILE ]]; then
-            password_aux=`cat ${REDIS_MASTER_PASSWORD_FILE}`
+            password_aux=`cat $${REDIS_MASTER_PASSWORD_FILE}`
             export REDIS_MASTER_PASSWORD=$password_aux
           fi
           if [[ ! -f /opt/bitnami/redis/etc/replica.conf ]];then
@@ -922,12 +922,12 @@ spec:
           if [[ ! -f /opt/bitnami/redis/etc/redis.conf ]];then
             cp /opt/bitnami/redis/mounted-etc/redis.conf /opt/bitnami/redis/etc/redis.conf
           fi
-          ARGS=("--port" "${REDIS_PORT}")
-          ARGS+=("--slaveof" "${REDIS_MASTER_HOST}" "${REDIS_MASTER_PORT_NUMBER}")
+          ARGS=("--port" "$${REDIS_PORT}")
+          ARGS+=("--slaveof" "$${REDIS_MASTER_HOST}" "$${REDIS_MASTER_PORT_NUMBER}")
           ARGS+=("--protected-mode" "no")
           ARGS+=("--include" "/opt/bitnami/redis/etc/redis.conf")
           ARGS+=("--include" "/opt/bitnami/redis/etc/replica.conf")
-          /run.sh "${ARGS[@]}"
+          /run.sh "$${ARGS[@]}"
         env:
         - name: REDIS_REPLICATION_MODE
           value: slave

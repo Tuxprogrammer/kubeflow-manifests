@@ -2335,19 +2335,19 @@ data:
                 - sh
                 - "-c"
                 - |-
-                  NODE_ID="sidecar~${INSTANCE_IP}~${POD_NAME}.${POD_NAMESPACE}~cluster.local"
-                  SERVER_URI="dns:///istiod.${ISTIO_NAMESPACE}.svc:15010"
+                  NODE_ID="sidecar~$${INSTANCE_IP}~$${POD_NAME}.$${POD_NAMESPACE}~cluster.local"
+                  SERVER_URI="dns:///istiod.$${ISTIO_NAMESPACE}.svc:15010"
                   echo '
                   {
                     "xds_servers": [
                       {
-                        "server_uri": "'${SERVER_URI}'",
+                        "server_uri": "'$${SERVER_URI}'",
                         "channel_creds": [{"type": "insecure"}],
                         "server_features" : ["xds_v3"]
                       }
                     ],
                     "node": {
-                      "id": "'${NODE_ID}'",
+                      "id": "'$${NODE_ID}'",
                       "metadata": {
                         "GENERATOR": "grpc"
                       }
