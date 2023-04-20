@@ -5123,7 +5123,7 @@ data:
 
     # logging.revision-url-template provides a template to use for producing the
     # logging URL that is injected into the status of each Revision.
-    logging.revision-url-template: "http://logging.example.com/?revisionUID=${REVISION_UID}"
+    logging.revision-url-template: "http://logging.example.com/?revisionUID=$${REVISION_UID}"
 
     # If non-empty, this enables queue proxy writing user request logs to stdout, excluding probe
     # requests.
