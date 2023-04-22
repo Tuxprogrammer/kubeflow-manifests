@@ -6,7 +6,7 @@ resources:
 - profile-instance.yaml
 configMapGenerator:
 - name: default-install-config
-  namespace: kubeflow-user-example-com
+  namespace: kubeflow
   envs:
   - params.env
 vars:
